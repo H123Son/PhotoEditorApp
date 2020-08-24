@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ChooseImageActivity">
+
+
+    <LinearLayout
+        android:id="@+id/ln_gallery"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/layoutSize"
+        android:layout_marginHorizontal="5dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="#F5A129"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        >
+        <ImageView
+            android:id="@+id/img_ic_gallery"
+            android:layout_width="@dimen/imageSize"
+            android:layout_height="@dimen/imageSize"
+            android:src="@drawable/ic_gallery"/>
+        <TextView
+            android:id="@+id/tv_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Chọn Ảnh Có Sẵn"
+            android:textStyle="bold"
+            android:textSize="@dimen/textSize"
+            android:textColor="#262726"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ln_camera"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/layoutSize"
+        android:layout_marginHorizontal="5dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="#F5A129"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline">
+        <ImageView
+            android:id="@+id/img_ic_camera"
+            android:layout_width="@dimen/imageSize"
+            android:layout_height="@dimen/imageSize"
+            android:src="@drawable/ic_camera"/>
+        <TextView
+            android:id="@+id/tv_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Chụp Ảnh"
+            android:textStyle="bold"
+            android:textSize="@dimen/textSize"
+            android:textColor="@color/textColor"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ln_image_editted"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/layoutSize"
+        android:layout_marginHorizontal="5dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/backgroundColor"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="@+id/ln_camera"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ln_camera">
+        <ImageView
+            android:id="@+id/img_ic_image_editted"
+            android:layout_width="@dimen/imageSize"
+            android:layout_height="@dimen/imageSize"
+            android:src="@drawable/ic_image_fixed"/>
+        <TextView
+            android:id="@+id/tv_image_editted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Ảnh Đã Chỉnh Sửa"
+            android:textStyle="bold"
+            android:textSize="@dimen/textSize"
+            android:textColor="#262726"/>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
