@@ -1,4 +1,4 @@
-package com.li.photoeditor.activity;
+package com.li.photoeditor.main.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

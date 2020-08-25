@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.EditImageActivity">
+    tools:context=".main.activity.EditImageActivity">
 
     <LinearLayout
         android:id="@+id/ln_save_image"
@@ -16,27 +16,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <ImageView
         android:id="@+id/img_editting_image"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/nav_edit_tool"
+        android:background="#023123"
+        app:layout_constraintBottom_toTopOf="@id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ln_save_image"
-        android:background="#023123"/>
+        app:layout_constraintTop_toBottomOf="@id/ln_save_image" />
 
+    <FrameLayout
+        android:id="@+id/fl_content_edit_tool"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/nav_edittool_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline4" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_edit_tool"
+        android:id="@+id/nav_edittool_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?android:attr/windowBackground"
+        app:itemTextColor="@color/textColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_menu"
-        android:background="?android:attr/windowBackground"
-        >
+        app:layout_constraintTop_toBottomOf="@id/fl_content_edit_tool"
+        app:menu="@menu/nav_menu" />
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
 </androidx.constraintlayout.widget.ConstraintLayout>

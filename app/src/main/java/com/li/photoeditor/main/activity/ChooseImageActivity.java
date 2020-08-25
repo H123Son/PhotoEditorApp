@@ -1,4 +1,4 @@
-package com.li.photoeditor.activity;
+package com.li.photoeditor.main.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

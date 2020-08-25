@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F6F8F8"
-    tools:context=".activity.DefaultActivity">
+    tools:context=".main.activity.DefaultActivity">
 
     <ImageView
         android:id="@+id/img_default_icon"
@@ -16,5 +16,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/default_screen_ic" />
+        app:srcCompat="@drawable/default_screen_ic"
+       />
 </androidx.constraintlayout.widget.ConstraintLayout>

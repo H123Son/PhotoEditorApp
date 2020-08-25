@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_crop"
-        android:icon="@drawable/ic_image_fixed"
+        android:icon="@drawable/ic_crop"
         android:title="Crop" />
     <item
-        android:id="@+id/nav_crop1"
-        android:icon="@drawable/ic_camera"
-        android:title="Mini" />
+        android:id="@+id/nav_filter"
+        android:icon="@drawable/ic_filter"
+        android:title="Hiệu Ứng" />
     <item
-        android:id="@+id/nav_crop2"
-        android:icon="@drawable/ic_gallery"
-        android:title="NI" />
+        android:id="@+id/nav_change"
+        android:icon="@drawable/ic_change"
+        android:title="Điều Chỉnh" />
 </menu>
