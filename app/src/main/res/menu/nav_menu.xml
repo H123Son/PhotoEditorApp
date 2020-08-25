@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_crop"
+        android:icon="@drawable/ic_image_fixed"
+        android:title="Crop" />
+    <item
+        android:id="@+id/nav_crop1"
+        android:icon="@drawable/ic_camera"
+        android:title="Mini" />
+    <item
+        android:id="@+id/nav_crop2"
+        android:icon="@drawable/ic_gallery"
+        android:title="NI" />
+</menu>

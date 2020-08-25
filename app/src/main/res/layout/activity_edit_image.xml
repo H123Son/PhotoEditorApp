@@ -20,22 +20,23 @@
         android:id="@+id/img_editting_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/tab_edit_tool"
+        app:layout_constraintBottom_toTopOf="@+id/nav_edit_tool"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ln_save_image"
         android:background="#023123"/>
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_edit_tool"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_edit_tool"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabSelectedTextColor="@color/textSelectedColor"
-        app:tabTextColor="@color/textColor">
+        app:menu="@menu/nav_menu"
+        android:background="?android:attr/windowBackground"
+        >
 
-    </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>

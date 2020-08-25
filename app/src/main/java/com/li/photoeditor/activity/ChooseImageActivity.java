@@ -1,19 +1,20 @@
 package com.li.photoeditor.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.li.photoeditor.R;
 
-import java.net.URI;
+import java.io.ByteArrayOutputStream;
 
 public class ChooseImageActivity extends AppCompatActivity implements View.OnClickListener {
     private final int GALLERY_REQUEST = 123;
@@ -21,7 +22,7 @@ public class ChooseImageActivity extends AppCompatActivity implements View.OnCli
     private final int EDITED_IMAGE_REQUEST = 125;
     private Intent intent;
     private LinearLayout lnGallery, lnCamera, lnEditedImage;
-    private Uri imageUri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,8 @@ public class ChooseImageActivity extends AppCompatActivity implements View.OnCli
                 intent.setType("image/*");
                 startActivityForResult(intent, EDITED_IMAGE_REQUEST);
                 break;
+            default:
+                break;
 
         }
 
@@ -64,17 +67,19 @@ public class ChooseImageActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK &&data!=null) {
-            imageUri = data.getData();
+        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
             Intent intent = new Intent(ChooseImageActivity.this, EditImageActivity.class);
             intent.putExtra("Uri Image", imageUri.toString());
             startActivity(intent);
 
 
-        } else if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK && data != null) {
-            imageUri = data.getData();
+        }
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK && data != null) {
+            Bitmap image = (Bitmap) data.getExtras().get("data");
+            String imageString = bitMapToString(image);
             Intent intent = new Intent(ChooseImageActivity.this, EditImageActivity.class);
-            intent.putExtra("Uri Image", imageUri.toString());
+            intent.putExtra("Bitmap Image", imageString);
             startActivity(intent);
 
         }
@@ -82,5 +87,13 @@ public class ChooseImageActivity extends AppCompatActivity implements View.OnCli
 
         }
 
+    }
+
+    public String bitMapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String temp = Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
     }
 }
