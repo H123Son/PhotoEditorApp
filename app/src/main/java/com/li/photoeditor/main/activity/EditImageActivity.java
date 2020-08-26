@@ -1,14 +1,15 @@
 package com.li.photoeditor.main.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,17 +17,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.li.photoeditor.R;
+import com.li.photoeditor.main.util.Parser;
+import com.li.photoeditor.main.util.PermissionManager;
 import com.yalantis.ucrop.UCrop;
-
 import java.io.File;
 import java.util.UUID;
 
-public class EditImageActivity extends AppCompatActivity {
+public class EditImageActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private ImageView imgEdittingImage;
     private FrameLayout flContent;
     private BottomNavigationView navEditToolList;
     private Uri imageUri;
-
+    private Bitmap imageBitMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,24 +37,10 @@ public class EditImageActivity extends AppCompatActivity {
         imgEdittingImage = findViewById(R.id.img_editting_image);
         flContent = findViewById(R.id.fl_content_edit_tool);
         navEditToolList = findViewById(R.id.nav_edittool_list);
+
         getImage();
-        navEditToolList.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_crop:
-                        startCrop();
 
-                        break;
-                    case R.id.nav_filter:
-                        break;
-                    case R.id.nav_change:
-                        break;
-                }
-                return false;
-            }
-
-        });
+        navEditToolList.setOnNavigationItemSelectedListener(this);
     }
 
     public void getImage() {
@@ -63,29 +51,29 @@ public class EditImageActivity extends AppCompatActivity {
             imageUri = Uri.parse(imageUriString);
             imgEdittingImage.setImageURI(imageUri);
         } else if (imageBitmapString != null) {
-            Bitmap bitmap = StringToBitMap(imageBitmapString);
-            imgEdittingImage.setImageBitmap(bitmap);
+            imageBitMap = Parser.getINSTANCE().StringToBitMap(imageBitmapString);
+            if (Build.VERSION.SDK_INT >= 23)
+            {
+                if (PermissionManager.getINSTANCE(this).checkPermission())
+                {
+                    imageUri = Parser.getINSTANCE().BitMaptoUri(EditImageActivity.this, imageBitMap);
+                    imgEdittingImage.setImageURI(imageUri);
+                } else {
+                    PermissionManager.getINSTANCE(this).requestPermission();
+                }
+            }
+            else {
+                imageUri = Parser.getINSTANCE().BitMaptoUri(EditImageActivity.this, imageBitMap);
+                imgEdittingImage.setImageURI(imageUri);
+            }
+
         }
 
-
     }
-
     public void startCrop() {
         String desfile = new StringBuilder(UUID.randomUUID().toString()).append(".jpg").toString();
         UCrop uCrop = UCrop.of(imageUri, Uri.fromFile(new File(getCacheDir(), desfile)));
         uCrop.start(EditImageActivity.this);
-    }
-
-    public Bitmap StringToBitMap(String encodedString) {
-        try {
-            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0,
-                    encodeByte.length);
-            return bitmap;
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
     }
 
     @Override
@@ -98,4 +86,34 @@ public class EditImageActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PermissionManager.PERMISSION_REQUEST_CODE :
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    imageUri = Parser.getINSTANCE().BitMaptoUri(EditImageActivity.this, imageBitMap);
+                    imgEdittingImage.setImageURI(imageUri);
+                } else {
+                    Toast.makeText(this,"Không thể tải ảnh lên khi chưa được cấp quyền",Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                break;
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_crop:
+                startCrop();
+
+                break;
+            case R.id.nav_filter:
+                break;
+            case R.id.nav_change:
+                break;
+        }
+        return false;
+    }
 }

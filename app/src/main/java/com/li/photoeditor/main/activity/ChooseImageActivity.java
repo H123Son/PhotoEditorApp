@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.li.photoeditor.R;
+import com.li.photoeditor.main.util.Parser;
 
 import java.io.ByteArrayOutputStream;
 
@@ -77,7 +78,7 @@ public class ChooseImageActivity extends AppCompatActivity implements View.OnCli
         }
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK && data != null) {
             Bitmap image = (Bitmap) data.getExtras().get("data");
-            String imageString = bitMapToString(image);
+            String imageString = Parser.getINSTANCE().bitMapToString(image);
             Intent intent = new Intent(ChooseImageActivity.this, EditImageActivity.class);
             intent.putExtra("Bitmap Image", imageString);
             startActivity(intent);
@@ -89,11 +90,11 @@ public class ChooseImageActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    public String bitMapToString(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String temp = Base64.encodeToString(b, Base64.DEFAULT);
-        return temp;
-    }
+//    public String bitMapToString(Bitmap bitmap) {
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG, 100,baos);
+//        byte[] b = baos.toByteArray();
+//        String temp = Base64.encodeToString(b, Base64.DEFAULT);
+//        return temp;
+//    }
 }
