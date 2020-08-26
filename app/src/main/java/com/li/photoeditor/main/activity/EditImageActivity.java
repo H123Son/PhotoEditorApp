@@ -50,12 +50,11 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
         if (imageUriString != null) {
             imageUri = Uri.parse(imageUriString);
             imgEdittingImage.setImageURI(imageUri);
-        } else if (imageBitmapString != null) {
+        }
+        else if (imageBitmapString != null) {
             imageBitMap = Parser.getINSTANCE().StringToBitMap(imageBitmapString);
-            if (Build.VERSION.SDK_INT >= 23)
-            {
-                if (PermissionManager.getINSTANCE(this).checkPermission())
-                {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (PermissionManager.getINSTANCE(this).checkPermission()) {
                     imageUri = Parser.getINSTANCE().BitMaptoUri(EditImageActivity.this, imageBitMap);
                     imgEdittingImage.setImageURI(imageUri);
                 } else {
@@ -76,6 +75,20 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
         uCrop.start(EditImageActivity.this);
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_crop:
+                startCrop();
+
+                break;
+            case R.id.nav_filter:
+                break;
+            case R.id.nav_change:
+                break;
+        }
+        return false;
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -102,18 +115,4 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
         }
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_crop:
-                startCrop();
-
-                break;
-            case R.id.nav_filter:
-                break;
-            case R.id.nav_change:
-                break;
-        }
-        return false;
-    }
 }
