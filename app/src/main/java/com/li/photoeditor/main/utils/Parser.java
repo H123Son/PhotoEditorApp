@@ -1,11 +1,14 @@
-package com.li.photoeditor.main.util;
+package com.li.photoeditor.main.utils;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.icu.util.Calendar;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 
@@ -39,8 +42,20 @@ public class Parser {
     public Uri BitMaptoUri(Activity inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.PNG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        String path = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage,
+                    "Title" + " - " +
+                            (Calendar.getInstance().getTime()), null);
+        }
         return Uri.parse(path);
+    }
+    public byte[] imageToByte(ImageView imgRe) {
+        Bitmap bmp = ((BitmapDrawable)imgRe.getDrawable()).getBitmap();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG,100,outputStream);
+        byte[] dataByte = outputStream.toByteArray();
+        return dataByte;
     }
 
 }

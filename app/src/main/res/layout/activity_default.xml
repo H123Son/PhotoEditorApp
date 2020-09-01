@@ -5,7 +5,7 @@
     android:id="@+id/cs_default"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6F8F8"
+    android:background="@color/background_color"
     tools:context=".main.activity.DefaultActivity">
 
     <ImageView
@@ -18,4 +18,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/default_screen_ic"
        />
+
+    <TextView
+        android:id="@+id/tv_appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Photo Editor"
+        android:textColor="#28d0f8"
+        android:textSize="24sp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_default_icon" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

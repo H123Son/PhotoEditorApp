@@ -4,54 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".main.activity.EditImageActivity">
 
-    <LinearLayout
-        android:id="@+id/ln_save_image"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_option"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/img_editting_image"
+        android:background="@color/background_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="Chỉnh sửa ảnh"
+        app:titleTextColor="@color/textColor" />
 
-
-    <ImageView
-        android:id="@+id/img_editting_image"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#023123"
-        app:layout_constraintBottom_toTopOf="@id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ln_save_image" />
 
     <FrameLayout
         android:id="@+id/fl_content_edit_tool"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="3dp"
         app:layout_constraintBottom_toTopOf="@id/nav_edittool_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline4" />
+        app:layout_constraintTop_toBottomOf="@id/img_editting_image"
+        android:background="@color/background_color"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_edittool_list"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?android:attr/windowBackground"
-        app:itemTextColor="@color/textColor"
+        app:itemTextColor="#161514"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fl_content_edit_tool"
-        app:menu="@menu/nav_menu" />
+        app:menu="@menu/menu_choose_image" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8" />
+        app:layout_constraintGuide_percent="0.75" />
+
+    <ImageView
+        android:id="@+id/img_editting_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:background="@color/background_color"
+        app:layout_constraintBottom_toTopOf="@+id/fl_content_edit_tool"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_option"
+        app:layout_constraintVertical_bias="0.195" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_share"
+        android:icon="@drawable/ic_share"
+        android:title="Chia sẻ"
+        />
+    <item android:id="@+id/nav_device_screen"
+        android:icon="@drawable/ic_screen"
+        android:title="Cài làm hình nền"
+        />
+
+</menu>

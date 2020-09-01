@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.util;
+package com.li.photoeditor.main.utils;
 
 import android.app.Activity;
 import android.content.Context;

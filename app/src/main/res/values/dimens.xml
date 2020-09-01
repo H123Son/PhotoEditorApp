@@ -2,5 +2,8 @@
 <resources>
     <dimen name="imageSize">70dp</dimen>
     <dimen name="layoutSize">140dp</dimen>
-    <dimen name="textSize">20sp</dimen>
+    <dimen name="textSize">16sp</dimen>
+    <dimen name="margin_horizontal">16dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="lbl_edit_image_control">100dp</dimen>
 </resources>
