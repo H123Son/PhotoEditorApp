@@ -1,11 +1,11 @@
-package com.li.photoeditor.main.database;
+package com.li.photoeditor.main.data.local;
 
 import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-
+import com.li.photoeditor.main.data.local.ImageDAO;
 import com.li.photoeditor.main.model.ImageEdited;
 
 @Database(entities = {ImageEdited.class}, version = 4,exportSchema = false)

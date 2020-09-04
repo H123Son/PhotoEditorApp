@@ -6,4 +6,11 @@
     <dimen name="margin_horizontal">16dp</dimen>
     <dimen name="padding_10">10dp</dimen>
     <dimen name="lbl_edit_image_control">100dp</dimen>
+    <dimen name="text_size_default">24sp</dimen>
+    <dimen name="myimage_size">120dp</dimen>
+    <dimen name="margin_start">5dp</dimen>
+    <dimen name="margin_toolbar_title">10dp</dimen>
+    <dimen name="image_magrin">5dp</dimen>
+    <dimen name="text_magrin_top">10dp</dimen>
+    <dimen name="default_screen_margin_text">40dp</dimen>
 </resources>

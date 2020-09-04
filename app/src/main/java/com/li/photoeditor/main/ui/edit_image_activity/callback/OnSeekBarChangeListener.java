@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.callback;
+package com.li.photoeditor.main.ui.edit_image_activity.callback;
 
 public interface  OnSeekBarChangeListener {
     void onBrightnessChanged(int brightness);

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,13 +19,15 @@
         <TextView
             android:layout_width="@dimen/lbl_edit_image_control"
             android:layout_height="wrap_content"
-            android:text="Brightness"
+            android:text="@string/brightness"
             android:textColor="@color/textColor"/>
 
         <SeekBar
             android:id="@+id/sb_brightness"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:max="200"
+            android:progress="100"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -39,14 +42,17 @@
         <TextView
             android:layout_width="@dimen/lbl_edit_image_control"
             android:layout_height="wrap_content"
-            android:text="Contrast"
+            android:text="@string/contrast"
             android:textColor="@color/textColor"/>
 
         <SeekBar
             android:id="@+id/sb_contrast"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:max="20"
+            android:progress="0"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -59,14 +65,17 @@
         <TextView
             android:layout_width="@dimen/lbl_edit_image_control"
             android:layout_height="wrap_content"
-            android:text="Saturation"
+            android:text="@string/saturation"
             android:textColor="@color/textColor"/>
 
         <SeekBar
             android:id="@+id/sb_saturation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:max="30"
+            android:progress="10"/>
     </LinearLayout>
 
 </LinearLayout>
+</layout>

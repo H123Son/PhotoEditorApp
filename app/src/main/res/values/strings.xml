@@ -3,4 +3,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="take_photo_text">Chụp Ảnh</string>
+    <string name="image_edited_text">Ảnh Đã Chỉnh Sửa</string>
+    <string name="edit_image">Chỉnh sửa ảnh</string>
+    <string name="brightness">Brightness</string>
+    <string name="contrast">Contrast</string>
+    <string name="saturation">Saturation</string>
+    <string name="app_title">Photo Editor</string>
 </resources>

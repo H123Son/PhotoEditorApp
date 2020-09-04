@@ -1,7 +1,6 @@
-package com.li.photoeditor.main.activity;
+package com.li.photoeditor.main.ui.edit_image_activity;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -10,23 +9,22 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.li.photoeditor.R;
-import com.li.photoeditor.main.callback.FilterListFragmentListener;
-import com.li.photoeditor.main.callback.OnSeekBarChangeListener;
-import com.li.photoeditor.main.database.ImgEditedDatabase;
-import com.li.photoeditor.main.fragment.EditImageFragment;
-import com.li.photoeditor.main.fragment.FilterFragment;
+import com.li.photoeditor.databinding.ActivityEditImageBinding;
+import com.li.photoeditor.main.base.BaseActivity;
+import com.li.photoeditor.main.common.Constanst;
+import com.li.photoeditor.main.ui.edit_image_activity.fragment.filter_fragment.callback.FilterListFragmentListener;
+import com.li.photoeditor.main.ui.edit_image_activity.callback.OnSeekBarChangeListener;
+import com.li.photoeditor.main.data.local.ImgEditedDatabase;
 import com.li.photoeditor.main.model.ImageEdited;
+import com.li.photoeditor.main.ui.edit_image_activity.fragment.edit_fragment.EditImageFragment;
+import com.li.photoeditor.main.ui.edit_image_activity.fragment.filter_fragment.FilterFragment;
 import com.li.photoeditor.main.utils.Parser;
 import com.li.photoeditor.main.utils.PermissionManager;
 import com.yalantis.ucrop.UCrop;
@@ -41,15 +39,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
-public class EditImageActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, FilterListFragmentListener, OnSeekBarChangeListener {
-    private FrameLayout flContent;
-    private BottomNavigationView navEditToolList;
+public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> implements BottomNavigationView.OnNavigationItemSelectedListener, FilterListFragmentListener, OnSeekBarChangeListener {
     private Uri imageUri;
     private Bitmap originalImage;
     private Bitmap filteredImage;
     private Bitmap finalImage;
-    private ImageView imgEdittingImage;
-    private Toolbar tbOption;
     private String imagePath;
     private FilterFragment filterFragment;
     private EditImageFragment editImageFragment;
@@ -64,19 +58,17 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
 
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.activity_edit_image;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_image);
-        imgEdittingImage = findViewById(R.id.img_editting_image);
-        flContent = findViewById(R.id.fl_content_edit_tool);
-        navEditToolList = findViewById(R.id.nav_edittool_list);
-        tbOption = findViewById(R.id.tb_option);
-
-        setSupportActionBar(tbOption);
-
+        setSupportActionBar(dataBinding.tbOption);
         getImage();
 
-        navEditToolList.setOnNavigationItemSelectedListener(this);
+        dataBinding.navEdittoolList.setOnNavigationItemSelectedListener(this);
         if (savedInstanceState == null) {
             filterFragment = new FilterFragment(this);
             getSupportFragmentManager()
@@ -87,9 +79,9 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
     }
 
     @Override
-    protected void onStop() {
+    protected void onDestroy() {
         saveImageEdited();
-        super.onStop();
+        super.onDestroy();
     }
 
     @Override
@@ -106,7 +98,6 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
                 break;
             case android.R.id.home:
                 onBackPressed();
-                finish();
                 break;
             default:
                 break;
@@ -138,7 +129,7 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
     }
 
     public void saveImage() {
-        BitmapDrawable draw = (BitmapDrawable) imgEdittingImage.getDrawable();
+        BitmapDrawable draw = (BitmapDrawable) dataBinding.imgEdittingImage.getDrawable();
         Bitmap bitmap = draw.getBitmap();
 
         FileOutputStream outStream = null;
@@ -176,14 +167,21 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
 
         filteredImage = originalImage.copy(Bitmap.Config.ARGB_8888, true);
         finalImage = originalImage.copy(Bitmap.Config.ARGB_8888, true);
-        imgEdittingImage.setImageBitmap(originalImage);
+        Glide.with(this).load(originalImage).into(dataBinding.imgEdittingImage);
 
     }
 
     public void saveImageEdited() {
-        Uri uri = Parser.getINSTANCE().BitMaptoUri(EditImageActivity.this, finalImage);
-        imagePath = uri.toString();
-        ImgEditedDatabase.getInstance(this).getImageDao().insertImage(new ImageEdited(imagePath));
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Uri uri = Parser.getINSTANCE().BitMaptoUri(EditImageActivity.this, finalImage);
+                imagePath = uri.toString();
+                ImgEditedDatabase.getInstance(EditImageActivity.this).getImageDao().insertImage(new ImageEdited(imagePath));
+            }
+        });
+        thread.start();
+
     }
 
     public Bitmap sendMyData() {
@@ -204,7 +202,7 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
     public void onFilterSelected(Filter filter) {
         resetControls();
         filteredImage = originalImage.copy(Bitmap.Config.ARGB_8888, true);
-        imgEdittingImage.setImageBitmap(filter.processFilter(filteredImage));
+        dataBinding.imgEdittingImage.setImageBitmap(filter.processFilter(filteredImage));
         finalImage = filteredImage.copy(Bitmap.Config.ARGB_8888, true);
     }
 
@@ -213,7 +211,8 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
         brightnessFinal = brightness;
         Filter myFilter = new Filter();
         myFilter.addSubFilter(new BrightnessSubFilter(brightness));
-        imgEdittingImage.setImageBitmap(myFilter.processFilter(finalImage.copy(Bitmap.Config.ARGB_8888, true)));
+        dataBinding.imgEdittingImage.setImageBitmap(myFilter.processFilter(finalImage.copy(Bitmap.Config.ARGB_8888, true)));
+
     }
 
     @Override
@@ -221,7 +220,8 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
         saturationFinal = saturation;
         Filter myFilter = new Filter();
         myFilter.addSubFilter(new SaturationSubfilter(saturation));
-        imgEdittingImage.setImageBitmap(myFilter.processFilter(finalImage.copy(Bitmap.Config.ARGB_8888, true)));
+        dataBinding.imgEdittingImage.setImageBitmap(myFilter.processFilter(finalImage.copy(Bitmap.Config.ARGB_8888, true)));
+
     }
 
     @Override
@@ -229,7 +229,8 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
         contrastFinal = contrast;
         Filter myFilter = new Filter();
         myFilter.addSubFilter(new ContrastSubFilter(contrast));
-        imgEdittingImage.setImageBitmap(myFilter.processFilter(finalImage.copy(Bitmap.Config.ARGB_8888, true)));
+        dataBinding.imgEdittingImage.setImageBitmap(myFilter.processFilter(finalImage.copy(Bitmap.Config.ARGB_8888, true)));
+
     }
 
     @Override
@@ -262,14 +263,6 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
     }
 
     @Override
-    public void onBackPressed() {
-        finish();
-        super.onBackPressed();
-
-    }
-
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
@@ -283,7 +276,7 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
                 e.printStackTrace();
             }
             originalImage = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-            imgEdittingImage.setImageBitmap(originalImage);
+            dataBinding.imgEdittingImage.setImageBitmap(originalImage);
         }
     }
 
@@ -291,7 +284,7 @@ public class EditImageActivity extends AppCompatActivity implements BottomNaviga
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
-            case PermissionManager.PERMISSION_REQUEST_CODE:
+            case Constanst.PERMISSION_REQUEST_CODE:
                 String desfile = new StringBuilder(UUID.randomUUID().toString()).append(".jpg").toString();
                 Uri uri = Parser.getINSTANCE().BitMaptoUri(EditImageActivity.this, finalImage);
                 UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), desfile)));

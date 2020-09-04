@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.activity;
+package com.li.photoeditor.main.ui.choose_image_activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,58 +7,57 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import com.google.android.material.navigation.NavigationView;
 import com.li.photoeditor.R;
+import com.li.photoeditor.databinding.ActivityChooseImageBinding;
+import com.li.photoeditor.main.ui.image_edited_activity.ImageEditedActivity;
+import com.li.photoeditor.main.base.BaseActivity;
+import com.li.photoeditor.main.common.Constanst;
+import com.li.photoeditor.main.ui.edit_image_activity.EditImageActivity;
 
 import java.io.File;
 
-public class ChooseImageActivity extends AppCompatActivity implements View.OnClickListener {
-    private final int GALLERY_REQUEST = 123;
-    private final int CAMERA_REQUEST = 124;
-    private LinearLayout lnGallery, lnCamera, lnEditedImage;
-    private NavigationView navChoice;
-    private DrawerLayout drawerLayout;
-    File file;
-    Uri fileUri;
+public class ChooseImageActivity extends BaseActivity<ActivityChooseImageBinding> implements View.OnClickListener {
+    private File file;
+    private Uri fileUri;
+
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_choose_image;
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_image);
-        //Cap quyen tao file,lay duong dan file luu anh tu camera
+        setPermissionToCreateFile();
+        setUpActionBar();
+        dataBinding.lnGallery.setOnClickListener(this);
+        dataBinding.lnCamera.setOnClickListener(this);
+        dataBinding.lnImageEditted.setOnClickListener(this);
+    }
+
+    private void setPermissionToCreateFile() {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
+    }
 
-        lnGallery = findViewById(R.id.ln_gallery);
-        lnCamera = findViewById(R.id.ln_camera);
-        lnEditedImage = findViewById(R.id.ln_image_editted);
-        navChoice = findViewById(R.id.nv_choose_image);
-        drawerLayout = findViewById(R.id.lo_drawer);
-
+    private void setUpActionBar() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_gallery);
-
-        lnGallery.setOnClickListener(this);
-        lnCamera.setOnClickListener(this);
-        lnEditedImage.setOnClickListener(this);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.closeDrawer(GravityCompat.START);
+            if (dataBinding.loDrawer.isDrawerOpen(GravityCompat.START)) {
+                dataBinding.loDrawer.closeDrawer(GravityCompat.START);
             } else {
-                drawerLayout.openDrawer(GravityCompat.START);
+                dataBinding.loDrawer.openDrawer(GravityCompat.START);
             }
 
             return true;
@@ -73,7 +72,7 @@ public class ChooseImageActivity extends AppCompatActivity implements View.OnCli
             case R.id.ln_gallery:
                 intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-                startActivityForResult(intent, GALLERY_REQUEST);
+                startActivityForResult(intent, Constanst.GALLERY_REQUEST);
                 break;
 
             case R.id.ln_camera:
@@ -81,7 +80,7 @@ public class ChooseImageActivity extends AppCompatActivity implements View.OnCli
                 file = new File(this.getExternalCacheDir(), System.currentTimeMillis() + ".jpg");
                 fileUri = Uri.fromFile(file);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                startActivityForResult(intent, CAMERA_REQUEST);
+                startActivityForResult(intent, Constanst.CAMERA_REQUEST);
                 break;
 
             case R.id.ln_image_editted:
@@ -94,16 +93,17 @@ public class ChooseImageActivity extends AppCompatActivity implements View.OnCli
         }
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
+        if (requestCode == Constanst.GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
             Uri imageUri = data.getData();
             Intent intent = new Intent(ChooseImageActivity.this, EditImageActivity.class);
             intent.putExtra("Image Data", imageUri.toString());
             startActivity(intent);
 
-        } else if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+        } else if (requestCode == Constanst.CAMERA_REQUEST && resultCode == RESULT_OK) {
             Intent intent = new Intent(ChooseImageActivity.this, EditImageActivity.class);
             intent.putExtra("Image Data", fileUri.toString());
             startActivity(intent);

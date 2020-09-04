@@ -1,39 +1,34 @@
-package com.li.photoeditor.main.activity;
+package com.li.photoeditor.main.ui.show_image_activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.app.WallpaperManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.provider.MediaStore;
 import android.view.MenuItem;
-import android.widget.ImageView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.li.photoeditor.R;
+import com.li.photoeditor.databinding.ActivityShowImageBinding;
+import com.li.photoeditor.main.base.BaseActivity;
 import com.li.photoeditor.main.model.ImageEdited;
 
 import java.io.IOException;
 
-public class ShowImageActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-    private ImageView imgShowImage;
-    private BottomNavigationView navChoice;
+public class ShowImageActivity extends BaseActivity<ActivityShowImageBinding> implements BottomNavigationView.OnNavigationItemSelectedListener {
+
     private Uri imageUri;
-
-
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_show_image;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_image);
-        imgShowImage = findViewById(R.id.img_show_image);
-        navChoice = findViewById(R.id.nav_tool_list);
-        navChoice.setOnNavigationItemSelectedListener(this);
+        dataBinding.navToolList.setOnNavigationItemSelectedListener(this);
         getData();
     }
 
@@ -42,7 +37,7 @@ public class ShowImageActivity extends AppCompatActivity implements BottomNaviga
         Bundle bundle = getdata.getExtras();
         ImageEdited imageEdited = (ImageEdited) bundle.getSerializable("Image Edited");
         imageUri = Uri.parse(imageEdited.getImageData());
-        imgShowImage.setImageURI(imageUri);
+        dataBinding.imgShowImage.setImageURI(imageUri);
 
     }
 
@@ -63,7 +58,7 @@ public class ShowImageActivity extends AppCompatActivity implements BottomNaviga
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Snackbar.make(imgShowImage, "Cài hình nền thành công", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(dataBinding.imgShowImage, "Cài hình nền thành công", Snackbar.LENGTH_SHORT).show();
                 break;
         }
         return false;

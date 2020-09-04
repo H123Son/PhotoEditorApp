@@ -3,13 +3,15 @@ package com.li.photoeditor.main.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
-
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.li.photoeditor.main.common.Constanst;
+
 public class PermissionManager {
-    public static final int PERMISSION_REQUEST_CODE = 1;
     private static PermissionManager INSTANCE;
+
+
     private static Context context;
 
     public static PermissionManager getINSTANCE(Context subContext)
@@ -31,7 +33,7 @@ public class PermissionManager {
         }
     }
     public void requestPermission() {
-        ActivityCompat.requestPermissions((Activity) context, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        ActivityCompat.requestPermissions((Activity) context, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constanst.PERMISSION_REQUEST_CODE);
     }
 
 }

@@ -1,31 +1,26 @@
-package com.li.photoeditor.main.adapter;
+package com.li.photoeditor.main.ui.image_edited_activity.adapter;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
 import com.li.photoeditor.R;
-import com.li.photoeditor.main.callback.OnItemImageEditedClick;
+import com.li.photoeditor.databinding.ItemImageEdtitedBinding;
+import com.li.photoeditor.main.ui.image_edited_activity.adapter.callback.OnItemImageEditedClick;
 import com.li.photoeditor.main.model.ImageEdited;
 
 import java.util.List;
 
 public class ImageEditedAdapter extends RecyclerView.Adapter<ImageEditedAdapter.ViewHolder> {
-    private Context context;
+    private LayoutInflater inflater;
     private List<ImageEdited> imageEditedList;
     private OnItemImageEditedClick listener;
 
-    public ImageEditedAdapter(Context context, List<ImageEdited> imageEditedList, OnItemImageEditedClick listener) {
-        this.context = context;
+    public ImageEditedAdapter(LayoutInflater inflater, List<ImageEdited> imageEditedList, OnItemImageEditedClick listener) {
+        this.inflater = inflater;
         this.imageEditedList = imageEditedList;
         this.listener = listener;
     }
@@ -38,16 +33,16 @@ public class ImageEditedAdapter extends RecyclerView.Adapter<ImageEditedAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_image_edtited, parent, false);
-        return new ViewHolder(view);
+        ItemImageEdtitedBinding dataBinding = DataBindingUtil.inflate(inflater, R.layout.item_image_edtited, parent, false);
+        return new ViewHolder(dataBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         ImageEdited imageEdited = imageEditedList.get(position);
         Uri uri = Uri.parse(imageEdited.getImageData());
-        holder.imgEdited.setImageURI(uri);
-        holder.imgEdited.setOnClickListener(new View.OnClickListener() {
+        holder.dataBinding.imgImageEdited.setImageURI(uri);
+        holder.dataBinding.imgImageEdited.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onClick(position);
@@ -61,11 +56,11 @@ public class ImageEditedAdapter extends RecyclerView.Adapter<ImageEditedAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgEdited;
+        ItemImageEdtitedBinding dataBinding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imgEdited = itemView.findViewById(R.id.img_image_edited);
+        public ViewHolder(@NonNull ItemImageEdtitedBinding dataBinding) {
+            super(dataBinding.getRoot());
+            this.dataBinding = dataBinding;
         }
     }
 }

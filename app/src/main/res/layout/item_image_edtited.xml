@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="120dp"
-    android:layout_height="120dp"
+    android:layout_width="@dimen/myimage_size"
+    android:layout_height="@dimen/myimage_size"
     android:background="@color/background_color"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="@dimen/margin_start">
 
     <ImageView
         android:id="@+id/img_image_edited"
@@ -14,3 +15,4 @@
         />
 
 </LinearLayout>
+</layout>

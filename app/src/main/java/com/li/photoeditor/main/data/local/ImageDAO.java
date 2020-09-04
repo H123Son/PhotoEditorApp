@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.database;
+package com.li.photoeditor.main.data.local;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
