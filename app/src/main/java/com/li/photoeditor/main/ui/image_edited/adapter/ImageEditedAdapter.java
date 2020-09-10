@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.ui.image_edited_activity.adapter;
+package com.li.photoeditor.main.ui.image_edited.adapter;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.li.photoeditor.R;
 import com.li.photoeditor.databinding.ItemImageEdtitedBinding;
-import com.li.photoeditor.main.ui.image_edited_activity.adapter.callback.OnItemImageEditedClick;
-import com.li.photoeditor.main.model.ImageEdited;
+import com.li.photoeditor.main.ui.image_edited.adapter.callback.OnItemImageEditedClick;
+import com.li.photoeditor.main.data.local.model.ImageEdited;
 
 import java.util.List;
 

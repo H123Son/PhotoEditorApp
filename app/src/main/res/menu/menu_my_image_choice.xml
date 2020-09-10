@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/nav_share"
         android:icon="@drawable/ic_share"
-        android:title="Chia sẻ"
+        android:title="@string/share_title"
         />
     <item android:id="@+id/nav_device_screen"
         android:icon="@drawable/ic_screen"
-        android:title="Cài làm hình nền"
+        android:title="@string/set_as_screen"
         />
 
 </menu>

@@ -5,12 +5,12 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.li.photoeditor.main.model.ImageEdited;
+import com.li.photoeditor.main.data.local.model.ImageEdited;
 
 import java.util.List;
 
 @Dao
-public interface ImageDAO {
+public interface ImageDao {
     @Query("SELECT * From ImageEdited")
     List<ImageEdited> getAll();
 

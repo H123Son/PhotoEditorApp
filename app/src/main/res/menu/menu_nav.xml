@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item android:id="@+id/nav_gallery"
-    android:title="Thư Viện"
+    android:title="@string/gallery_title"
     android:icon="@drawable/ic_gallery"
     />
     <item android:id="@+id/nav_cam"
-        android:title="Máy Ảnh"
+        android:title="@string/camera_title"
         android:icon="@drawable/ic_camera"
         />
     <item android:id="@+id/nav_my_image"
-        android:title="Ảnh Đã Chỉnh Sửa"
+        android:title="@string/my_image_title"
         android:icon="@drawable/ic_image_fixed"
         />
     <item android:id="@+id/nav_about_us"
-        android:title="Thông Tin"
+        android:title="@string/information_title"
         android:icon="@drawable/ic_about_us"
         />
 </menu>

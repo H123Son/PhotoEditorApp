@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.ui.edit_image_activity;
+package com.li.photoeditor.main.ui.edit_image;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -6,12 +6,15 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,12 +22,12 @@ import com.li.photoeditor.R;
 import com.li.photoeditor.databinding.ActivityEditImageBinding;
 import com.li.photoeditor.main.base.BaseActivity;
 import com.li.photoeditor.main.common.Constanst;
-import com.li.photoeditor.main.ui.edit_image_activity.fragment.filter_fragment.callback.FilterListFragmentListener;
-import com.li.photoeditor.main.ui.edit_image_activity.callback.OnSeekBarChangeListener;
+import com.li.photoeditor.main.ui.edit_image.filter.callback.FilterListFragmentListener;
+import com.li.photoeditor.main.ui.edit_image.callback.OnSeekBarChangeListener;
 import com.li.photoeditor.main.data.local.ImgEditedDatabase;
-import com.li.photoeditor.main.model.ImageEdited;
-import com.li.photoeditor.main.ui.edit_image_activity.fragment.edit_fragment.EditImageFragment;
-import com.li.photoeditor.main.ui.edit_image_activity.fragment.filter_fragment.FilterFragment;
+import com.li.photoeditor.main.data.local.model.ImageEdited;
+import com.li.photoeditor.main.ui.edit_image.filter.FilterFragment;
+import com.li.photoeditor.main.utils.ImageUtils;
 import com.li.photoeditor.main.utils.Parser;
 import com.li.photoeditor.main.utils.PermissionManager;
 import com.yalantis.ucrop.UCrop;
@@ -47,15 +50,9 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
     private String imagePath;
     private FilterFragment filterFragment;
     private EditImageFragment editImageFragment;
-
     private int brightnessFinal = 0;
     private float saturationFinal = 1.0f;
     private float contrastFinal = 1.0f;
-
-    static {
-        System.loadLibrary("NativeImageProcessor");
-    }
-
 
     @Override
     protected int getLayoutId() {
@@ -76,12 +73,6 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
                     .add(R.id.fl_content_edit_tool, filterFragment)
                     .commit();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        saveImageEdited();
-        super.onDestroy();
     }
 
     @Override
@@ -112,20 +103,21 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
                 startCrop();
                 break;
             case R.id.nav_filter:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fl_content_edit_tool, filterFragment)
-                        .commit();
+                replaceFragment(filterFragment);
                 break;
             case R.id.nav_change:
                 editImageFragment = new EditImageFragment(this);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fl_content_edit_tool, editImageFragment)
-                        .commit();
+                replaceFragment(editImageFragment);
                 break;
         }
         return false;
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fl_content_edit_tool, fragment)
+                .commit();
     }
 
     public void saveImage() {
@@ -159,15 +151,10 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
         Intent intent = getIntent();
         imagePath = intent.getStringExtra("Image Data");
         imageUri = Uri.parse(imagePath);
-        try {
-            originalImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        filteredImage = originalImage.copy(Bitmap.Config.ARGB_8888, true);
-        finalImage = originalImage.copy(Bitmap.Config.ARGB_8888, true);
-        Glide.with(this).load(originalImage).into(dataBinding.imgEdittingImage);
+        originalImage = ImageUtils.getImageBitMap(imageUri, EditImageActivity.this);
+        filteredImage = ImageUtils.copyBitMap(originalImage);
+        finalImage = ImageUtils.copyBitMap(originalImage);
+        Glide.with(EditImageActivity.this).load(finalImage).into(dataBinding.imgEdittingImage);
 
     }
 
@@ -175,7 +162,7 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                Uri uri = Parser.getINSTANCE().BitMaptoUri(EditImageActivity.this, finalImage);
+                Uri uri = Parser.getInstance().BitMaptoUri(EditImageActivity.this, finalImage);
                 imagePath = uri.toString();
                 ImgEditedDatabase.getInstance(EditImageActivity.this).getImageDao().insertImage(new ImageEdited(imagePath));
             }
@@ -201,9 +188,9 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
     @Override
     public void onFilterSelected(Filter filter) {
         resetControls();
-        filteredImage = originalImage.copy(Bitmap.Config.ARGB_8888, true);
+        filteredImage = ImageUtils.copyBitMap(originalImage);
         dataBinding.imgEdittingImage.setImageBitmap(filter.processFilter(filteredImage));
-        finalImage = filteredImage.copy(Bitmap.Config.ARGB_8888, true);
+        finalImage = ImageUtils.copyBitMap(filteredImage);
     }
 
     @Override
@@ -211,7 +198,7 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
         brightnessFinal = brightness;
         Filter myFilter = new Filter();
         myFilter.addSubFilter(new BrightnessSubFilter(brightness));
-        dataBinding.imgEdittingImage.setImageBitmap(myFilter.processFilter(finalImage.copy(Bitmap.Config.ARGB_8888, true)));
+        dataBinding.imgEdittingImage.setImageBitmap(myFilter.processFilter(ImageUtils.copyBitMap(finalImage)));
 
     }
 
@@ -220,8 +207,7 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
         saturationFinal = saturation;
         Filter myFilter = new Filter();
         myFilter.addSubFilter(new SaturationSubfilter(saturation));
-        dataBinding.imgEdittingImage.setImageBitmap(myFilter.processFilter(finalImage.copy(Bitmap.Config.ARGB_8888, true)));
-
+        dataBinding.imgEdittingImage.setImageBitmap(myFilter.processFilter(ImageUtils.copyBitMap(finalImage)));
     }
 
     @Override
@@ -229,8 +215,7 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
         contrastFinal = contrast;
         Filter myFilter = new Filter();
         myFilter.addSubFilter(new ContrastSubFilter(contrast));
-        dataBinding.imgEdittingImage.setImageBitmap(myFilter.processFilter(finalImage.copy(Bitmap.Config.ARGB_8888, true)));
-
+        dataBinding.imgEdittingImage.setImageBitmap(myFilter.processFilter(ImageUtils.copyBitMap(finalImage)));
     }
 
     @Override
@@ -240,8 +225,7 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
 
     @Override
     public void onEditCompleted() {
-        final Bitmap bitmap = filteredImage.copy(Bitmap.Config.ARGB_8888, true);
-
+        Bitmap bitmap = ImageUtils.copyBitMap(filteredImage);
         Filter myFilter = new Filter();
         myFilter.addSubFilter(new BrightnessSubFilter(brightnessFinal));
         myFilter.addSubFilter(new ContrastSubFilter(contrastFinal));
@@ -250,16 +234,10 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
     }
 
     public void startCrop() {
-        if (PermissionManager.getINSTANCE(EditImageActivity.this).checkPermission()) {
             String desfile = new StringBuilder(UUID.randomUUID().toString()).append(".jpg").toString();
-            Uri uri = Parser.getINSTANCE().BitMaptoUri(EditImageActivity.this, finalImage);
+            Uri uri = Parser.getInstance().BitMaptoUri(EditImageActivity.this, finalImage);
             UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), desfile)));
             uCrop.start(EditImageActivity.this);
-        } else {
-            PermissionManager.getINSTANCE(EditImageActivity.this).requestPermission();
-        }
-
-
     }
 
     @Override
@@ -269,28 +247,15 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
             Uri uri = UCrop.getOutput(data);
             imagePath = uri.toString();
             imageUri = uri;
-            Bitmap bitmap = null;
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Bitmap bitmap = ImageUtils.getImageBitMap(uri, EditImageActivity.this);
             originalImage = bitmap.copy(Bitmap.Config.ARGB_8888, true);
             dataBinding.imgEdittingImage.setImageBitmap(originalImage);
         }
     }
-
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case Constanst.PERMISSION_REQUEST_CODE:
-                String desfile = new StringBuilder(UUID.randomUUID().toString()).append(".jpg").toString();
-                Uri uri = Parser.getINSTANCE().BitMaptoUri(EditImageActivity.this, finalImage);
-                UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), desfile)));
-                uCrop.start(EditImageActivity.this);
-                break;
-        }
+    public void onBackPressed() {
+        saveImageEdited();
+        super.onBackPressed();
     }
 }
 

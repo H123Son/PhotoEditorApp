@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".main.common.ApplicationClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,9 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.ui.show_image_activity.ShowImageActivity" />
-        <activity android:name=".main.ui.image_edited_activity.ImageEditedActivity" />
-        <activity android:name=".main.ui.edit_image_activity.EditImageActivity" />
+            android:name=".main.ui.show_image.ShowImageActivity" />
+        <activity android:name=".main.ui.image_edited.ImageEditedActivity" />
+        <activity android:name=".main.ui.edit_image.EditImageActivity" />
         <activity android:name=".main.ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.ui.choose_image_activity.ChooseImageActivity"
+            android:name=".main.ui.choose_image.ChooseImageActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

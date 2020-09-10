@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background_color"
-            tools:context=".main.ui.choose_image_activity.ChooseImageActivity">
+            tools:context=".main.ui.choose_image.ChooseImageActivity">
 
             <LinearLayout
                 android:id="@+id/ln_gallery"
@@ -28,6 +28,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline">
 
+
                 <ImageView
                     android:id="@+id/img_ic_gallery"
                     android:layout_width="@dimen/imageSize"
@@ -39,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/text_magrin_top"
-                    android:text="Chọn Ảnh Có Sẵn"
+                    android:text="@string/get_media_image"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textSize"
                     android:textStyle="bold" />
@@ -100,7 +101,7 @@
                     android:id="@+id/tv_image_editted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/tv_margin_top"
                     android:text="@string/image_edited_text"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textSize"

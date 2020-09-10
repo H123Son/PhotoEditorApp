@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    tools:context=".main.ui.edit_image_activity.EditImageActivity">
+    tools:context=".main.ui.edit_image.EditImageActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_option"

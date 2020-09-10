@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.ui.edit_image_activity.fragment.filter_fragment.callback;
+package com.li.photoeditor.main.ui.edit_image.filter.callback;
 
 import com.zomato.photofilters.imageprocessors.Filter;
 

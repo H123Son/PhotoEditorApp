@@ -13,4 +13,5 @@
     <dimen name="image_magrin">5dp</dimen>
     <dimen name="text_magrin_top">10dp</dimen>
     <dimen name="default_screen_margin_text">40dp</dimen>
+    <dimen name="tv_margin_top">10dp</dimen>
 </resources>

@@ -4,6 +4,6 @@
 <item
     android:id="@+id/tb_save_image"
     android:icon="@drawable/ic_file_download_black_24dp"
-    android:title="Save Image"
+    android:title="@string/save_image_title"
     app:showAsAction="ifRoom"/>
 </menu>

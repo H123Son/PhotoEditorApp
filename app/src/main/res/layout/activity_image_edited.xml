@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.ui.image_edited_activity.ImageEditedActivity">
+    tools:context=".main.ui.image_edited.ImageEditedActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_option_image_edited"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        app:title="Ảnh đã chỉnh sửa"
+        app:title="@string/my_image_title"
         app:titleTextColor="@color/textColor"
         app:titleMarginStart="@dimen/margin_toolbar_title"
         android:background="@color/background_color"

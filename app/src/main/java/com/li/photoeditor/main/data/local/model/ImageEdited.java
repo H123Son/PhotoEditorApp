@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.model;
+package com.li.photoeditor.main.data.local.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.ui.edit_image_activity.fragment.edit_fragment;
+package com.li.photoeditor.main.ui.edit_image;
 
 import android.view.View;
 import android.widget.SeekBar;
@@ -6,7 +6,7 @@ import android.widget.SeekBar;
 import com.li.photoeditor.R;
 import com.li.photoeditor.databinding.FragmentEditImageBinding;
 import com.li.photoeditor.main.base.BaseFragment;
-import com.li.photoeditor.main.ui.edit_image_activity.callback.OnSeekBarChangeListener;
+import com.li.photoeditor.main.ui.edit_image.callback.OnSeekBarChangeListener;
 
 public class EditImageFragment extends BaseFragment<FragmentEditImageBinding> implements SeekBar.OnSeekBarChangeListener {
     private OnSeekBarChangeListener listener;

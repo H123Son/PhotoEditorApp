@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.ui.edit_image_activity.fragment.filter_fragment;
+package com.li.photoeditor.main.ui.edit_image.filter;
 
 import android.graphics.Bitmap;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,10 +7,9 @@ import android.view.View;
 import com.li.photoeditor.R;
 import com.li.photoeditor.databinding.FragmentFilterBinding;
 import com.li.photoeditor.main.base.BaseFragment;
-import com.li.photoeditor.main.ui.edit_image_activity.fragment.filter_fragment.callback.FilterListFragmentListener;
-import com.li.photoeditor.main.ui.edit_image_activity.fragment.filter_fragment.callback.OnImageFilterClick;
-import com.li.photoeditor.main.ui.edit_image_activity.EditImageActivity;
-import com.li.photoeditor.main.ui.edit_image_activity.fragment.filter_fragment.adapter.FilterImageAdapter;
+import com.li.photoeditor.main.ui.edit_image.filter.callback.FilterListFragmentListener;
+import com.li.photoeditor.main.ui.edit_image.filter.callback.OnImageFilterClick;
+import com.li.photoeditor.main.ui.edit_image.EditImageActivity;
 import com.zomato.photofilters.FilterPack;
 import com.zomato.photofilters.imageprocessors.Filter;
 import com.zomato.photofilters.utils.ThumbnailItem;
@@ -41,8 +40,7 @@ public class FilterFragment extends BaseFragment<FragmentFilterBinding> implemen
     @Override
     protected void onViewReady(View view) {
         EditImageActivity activity = (EditImageActivity) getActivity();
-        //set scale image bitmap
-        imageBitMap = Bitmap.createScaledBitmap(activity.sendMyData(), 100, 100, false);
+        imageBitMap = activity.sendMyData().copy(Bitmap.Config.ARGB_8888, true);
         thumbnailItemList = new ArrayList<>();
         addListItemImageFilter();
         imageAdapter = new FilterImageAdapter(thumbnailItemList, getLayoutInflater(), this);

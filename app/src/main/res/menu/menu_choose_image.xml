@@ -3,13 +3,13 @@
     <item
         android:id="@+id/nav_crop"
         android:icon="@drawable/ic_crop"
-        android:title="Crop" />
+        android:title="@string/crop" />
     <item
         android:id="@+id/nav_filter"
         android:icon="@drawable/ic_filter"
-        android:title="Hiệu Ứng" />
+        android:title="@string/filter_title" />
     <item
         android:id="@+id/nav_change"
         android:icon="@drawable/ic_change"
-        android:title="Điều Chỉnh" />
+        android:title="@string/changer_title" />
 </menu>

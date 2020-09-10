@@ -5,18 +5,16 @@ import android.graphics.Bitmap;
 import android.icu.util.Calendar;
 import android.net.Uri;
 import android.provider.MediaStore;
-
-
 import java.io.ByteArrayOutputStream;
 
 public class Parser {
-    private static Parser INSTANCE;
+    private static Parser instance;
 
-    public static Parser getINSTANCE() {
-        if (INSTANCE == null) {
-            INSTANCE = new Parser();
+    public static Parser getInstance() {
+        if (instance == null) {
+            instance = new Parser();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public Uri BitMaptoUri(Activity inContext, Bitmap inImage){

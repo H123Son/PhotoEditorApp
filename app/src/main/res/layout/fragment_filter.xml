@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".main.ui.edit_image_activity.fragment.filter_fragment.FilterFragment">
+    tools:context=".main.ui.edit_image.filter.FilterFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_filter"

@@ -1,21 +1,25 @@
-package com.li.photoeditor.main.ui.choose_image_activity;
+package com.li.photoeditor.main.ui.choose_image;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import com.li.photoeditor.R;
 import com.li.photoeditor.databinding.ActivityChooseImageBinding;
-import com.li.photoeditor.main.ui.image_edited_activity.ImageEditedActivity;
+import com.li.photoeditor.main.ui.image_edited.ImageEditedActivity;
 import com.li.photoeditor.main.base.BaseActivity;
 import com.li.photoeditor.main.common.Constanst;
-import com.li.photoeditor.main.ui.edit_image_activity.EditImageActivity;
+import com.li.photoeditor.main.ui.edit_image.EditImageActivity;
+import com.li.photoeditor.main.utils.PermissionManager;
 
 import java.io.File;
 
@@ -23,21 +27,25 @@ public class ChooseImageActivity extends BaseActivity<ActivityChooseImageBinding
     private File file;
     private Uri fileUri;
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_choose_image;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setPermissionToCreateFile();
         setUpActionBar();
-        dataBinding.lnGallery.setOnClickListener(this);
-        dataBinding.lnCamera.setOnClickListener(this);
-        dataBinding.lnImageEditted.setOnClickListener(this);
+        if (PermissionManager.getINSTANCE(ChooseImageActivity.this).checkPermission()){
+            setPermissionToCreateFile();
+            dataBinding.lnGallery.setOnClickListener(this);
+            dataBinding.lnCamera.setOnClickListener(this);
+            dataBinding.lnImageEditted.setOnClickListener(this);
+        }
+        else{
+            PermissionManager.getINSTANCE(this).requestPermission();
+        }
+
     }
 
     private void setPermissionToCreateFile() {
@@ -112,9 +120,26 @@ public class ChooseImageActivity extends BaseActivity<ActivityChooseImageBinding
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == Constanst.PERMISSION_REQUEST_CODE){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                setPermissionToCreateFile();
+                dataBinding.lnGallery.setOnClickListener(this);
+                dataBinding.lnCamera.setOnClickListener(this);
+                dataBinding.lnImageEditted.setOnClickListener(this);
+            }
+            else {
+                Toast.makeText(ChooseImageActivity.this,"Không Thể Sửa Ảnh Khi Chưa Cấp Quyền,Vui Lòng Chạy Lại Ứng Dụng Và Cấp Quyền ", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         onDestroy();
         super.onBackPressed();
+
     }
 
 }

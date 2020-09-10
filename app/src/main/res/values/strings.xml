@@ -10,4 +10,15 @@
     <string name="contrast">Contrast</string>
     <string name="saturation">Saturation</string>
     <string name="app_title">Photo Editor</string>
+    <string name="get_media_image">Chọn Ảnh Có Sẵn</string>
+    <string name="crop">Crop</string>
+    <string name="filter_title">Hiệu Ứng</string>
+    <string name="changer_title">Điều Chỉnh</string>
+    <string name="share_title">Chia sẻ</string>
+    <string name="set_as_screen">Cài làm hình nền</string>
+    <string name="gallery_title">Thư Viện</string>
+    <string name="camera_title">Máy Ảnh</string>
+    <string name="my_image_title">Ảnh Đã Chỉnh Sửa</string>
+    <string name="information_title">Thông Tin</string>
+    <string name="save_image_title">Save Image</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.li.photoeditor.main.ui.show_image_activity;
+package com.li.photoeditor.main.ui.show_image;
 
 import androidx.annotation.NonNull;
 
@@ -7,14 +7,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.MenuItem;
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.li.photoeditor.R;
 import com.li.photoeditor.databinding.ActivityShowImageBinding;
 import com.li.photoeditor.main.base.BaseActivity;
-import com.li.photoeditor.main.model.ImageEdited;
+import com.li.photoeditor.main.data.local.model.ImageEdited;
+import com.li.photoeditor.main.utils.ImageUtils;
 
 import java.io.IOException;
 
@@ -37,7 +38,7 @@ public class ShowImageActivity extends BaseActivity<ActivityShowImageBinding> im
         Bundle bundle = getdata.getExtras();
         ImageEdited imageEdited = (ImageEdited) bundle.getSerializable("Image Edited");
         imageUri = Uri.parse(imageEdited.getImageData());
-        dataBinding.imgShowImage.setImageURI(imageUri);
+        Glide.with(dataBinding.imgShowImage).load(imageUri).into(dataBinding.imgShowImage);
 
     }
 
@@ -48,12 +49,13 @@ public class ShowImageActivity extends BaseActivity<ActivityShowImageBinding> im
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("image/*");
                 sharingIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                startActivity(Intent.createChooser(sharingIntent, "Share Apps"));
 
                 break;
             case R.id.nav_device_screen:
                 try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                    Bitmap bitmap = ImageUtils.getImageBitMap(imageUri,this);
+                    //Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                     WallpaperManager.getInstance(ShowImageActivity.this).setBitmap(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
