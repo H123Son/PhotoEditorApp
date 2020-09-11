@@ -4,18 +4,15 @@ import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import com.li.photoeditor.R;
 import com.li.photoeditor.databinding.ActivityImageEditedBinding;
 import com.li.photoeditor.main.base.BaseActivity;
-import com.li.photoeditor.main.ui.edit_image.EditImageActivity;
 import com.li.photoeditor.main.ui.image_edited.adapter.callback.OnItemImageEditedClick;
 import com.li.photoeditor.main.data.local.ImgEditedDatabase;
 import com.li.photoeditor.main.data.local.model.ImageEdited;
 import com.li.photoeditor.main.ui.image_edited.adapter.ImageEditedAdapter;
 import com.li.photoeditor.main.ui.show_image.ShowImageActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +30,6 @@ public class ImageEditedActivity extends BaseActivity<ActivityImageEditedBinding
         setSupportActionBar(dataBinding.tbOptionImageEdited);
         GetImageTask getImageTask = new GetImageTask();
         getImageTask.execute();
-       // ImgEditedDatabase.getInstance(this).getImageDao().deleteAllUser();
 
     }
 

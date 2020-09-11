@@ -36,14 +36,14 @@ public class ChooseImageActivity extends BaseActivity<ActivityChooseImageBinding
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setUpActionBar();
-        if (PermissionManager.getINSTANCE(ChooseImageActivity.this).checkPermission()){
+        if (PermissionManager.getInstance(ChooseImageActivity.this).checkPermission()){
             setPermissionToCreateFile();
             dataBinding.lnGallery.setOnClickListener(this);
             dataBinding.lnCamera.setOnClickListener(this);
             dataBinding.lnImageEditted.setOnClickListener(this);
         }
         else{
-            PermissionManager.getINSTANCE(this).requestPermission();
+            PermissionManager.getInstance(this).requestPermission();
         }
 
     }

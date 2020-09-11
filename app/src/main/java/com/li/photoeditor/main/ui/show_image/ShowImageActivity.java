@@ -55,7 +55,6 @@ public class ShowImageActivity extends BaseActivity<ActivityShowImageBinding> im
             case R.id.nav_device_screen:
                 try {
                     Bitmap bitmap = ImageUtils.getImageBitMap(imageUri,this);
-                    //Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                     WallpaperManager.getInstance(ShowImageActivity.this).setBitmap(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();

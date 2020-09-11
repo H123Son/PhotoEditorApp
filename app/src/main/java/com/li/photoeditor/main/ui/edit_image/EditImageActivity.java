@@ -64,7 +64,6 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
         super.onCreate(savedInstanceState);
         setSupportActionBar(dataBinding.tbOption);
         getImage();
-
         dataBinding.navEdittoolList.setOnNavigationItemSelectedListener(this);
         if (savedInstanceState == null) {
             filterFragment = new FilterFragment(this);
@@ -248,7 +247,7 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
             imagePath = uri.toString();
             imageUri = uri;
             Bitmap bitmap = ImageUtils.getImageBitMap(uri, EditImageActivity.this);
-            originalImage = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+            originalImage = ImageUtils.copyBitMap(bitmap);
             dataBinding.imgEdittingImage.setImageBitmap(originalImage);
         }
     }

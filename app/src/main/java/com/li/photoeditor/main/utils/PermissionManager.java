@@ -9,19 +9,19 @@ import androidx.core.content.ContextCompat;
 import com.li.photoeditor.main.common.Constanst;
 
 public class PermissionManager {
-    private static PermissionManager INSTANCE;
+    private static PermissionManager Instance;
 
 
     private static Context context;
 
-    public static PermissionManager getINSTANCE(Context subContext)
+    public static PermissionManager getInstance(Context subContext)
     {
-        if(INSTANCE == null)
+        if(Instance == null)
         {
-            INSTANCE.context = subContext;
-            INSTANCE = new PermissionManager();
+            Instance.context = subContext;
+            Instance = new PermissionManager();
         }
-        return INSTANCE;
+        return Instance;
     }
 
     public boolean checkPermission() {
