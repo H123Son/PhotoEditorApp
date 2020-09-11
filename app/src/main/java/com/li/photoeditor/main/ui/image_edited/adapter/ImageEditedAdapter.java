@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.li.photoeditor.R;
 import com.li.photoeditor.databinding.ItemImageEdtitedBinding;
 import com.li.photoeditor.main.ui.image_edited.adapter.callback.OnItemImageEditedClick;
@@ -41,7 +43,7 @@ public class ImageEditedAdapter extends RecyclerView.Adapter<ImageEditedAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         ImageEdited imageEdited = imageEditedList.get(position);
         Uri uri = Uri.parse(imageEdited.getImageData());
-        holder.dataBinding.imgImageEdited.setImageURI(uri);
+        Glide.with(holder.dataBinding.imgImageEdited).load(uri).into(holder.dataBinding.imgImageEdited);
         holder.dataBinding.imgImageEdited.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

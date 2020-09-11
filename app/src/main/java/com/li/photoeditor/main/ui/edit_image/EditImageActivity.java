@@ -161,9 +161,9 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                Uri uri = Parser.getInstance().BitMaptoUri(EditImageActivity.this, finalImage);
-                imagePath = uri.toString();
-                ImgEditedDatabase.getInstance(EditImageActivity.this).getImageDao().insertImage(new ImageEdited(imagePath));
+                String path = Parser.getInstance().bitMapToString(EditImageActivity.this, finalImage);
+                ImgEditedDatabase.getInstance(EditImageActivity.this).getImageDao().insertImage(new ImageEdited(path));
+
             }
         });
         thread.start();
@@ -233,10 +233,17 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
     }
 
     public void startCrop() {
-            String desfile = new StringBuilder(UUID.randomUUID().toString()).append(".jpg").toString();
-            Uri uri = Parser.getInstance().BitMaptoUri(EditImageActivity.this, finalImage);
-            UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), desfile)));
-            uCrop.start(EditImageActivity.this);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String desfile = new StringBuilder(UUID.randomUUID().toString()).append(".jpg").toString();
+                Uri uri = Uri.parse(Parser.getInstance().bitMapToString(EditImageActivity.this, finalImage));
+                UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), desfile)));
+                uCrop.start(EditImageActivity.this);
+            }
+        });
+        thread.start();
+
     }
 
     @Override
@@ -248,9 +255,11 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
             imageUri = uri;
             Bitmap bitmap = ImageUtils.getImageBitMap(uri, EditImageActivity.this);
             originalImage = ImageUtils.copyBitMap(bitmap);
-            dataBinding.imgEdittingImage.setImageBitmap(originalImage);
+            finalImage = ImageUtils.copyBitMap(bitmap);
+            Glide.with(dataBinding.imgEdittingImage).load(originalImage).into(dataBinding.imgEdittingImage);
         }
     }
+
     @Override
     public void onBackPressed() {
         saveImageEdited();
