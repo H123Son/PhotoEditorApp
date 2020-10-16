@@ -39,16 +39,6 @@ public class MyImageFragment extends BaseFragment<FragmentMyImageBinding> implem
         startActivity(intent);
     }
 
-    @Override
-    public void onResume() {
-        getImageTask = new GetImageTask();
-        getImageTask.execute();
-        super.onResume();
-
-
-    }
-
-
     public class GetImageTask extends AsyncTask<Void,Void, List<ImageEdited>> {
         @Override
         protected List<ImageEdited> doInBackground(Void... voids) {

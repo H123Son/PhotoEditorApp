@@ -148,12 +148,6 @@ public class ChooseImageActivity extends BaseActivity<ActivityChooseImageBinding
 
         }
     }
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        finish();
-        startActivity(getIntent());
-    }
 
     @Override
     public void onBackPressed() {
