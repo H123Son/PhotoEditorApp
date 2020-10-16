@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="77.0dip" android:width="61.0dip" android:viewportWidth="61.0" android:viewportHeight="77.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="Artboard" android:translateX="-215.0" android:translateY="-794.0">
+        <path android:name="Combined-Shape" android:fillColor="#ff5f5c5c" android:pathData="M218.52 794 L272.48 794 C274.424042 794 276 795.575958 276 797.52 L276 867.48 C276 869.424042 274.424042 871 272.48 871 L218.52 871 C216.575958 871 215 869.424042 215 867.48 L215 797.52 C215 795.575958 216.575958 794 218.52 794 Z M218.52 796 C217.680527 796 217 796.680527 217 797.52 L217 867.48 C217 868.319473 217.680527 869 218.52 869 L272.48 869 C273.319473 869 274 868.319473 274 867.48 L274 797.52 C274 796.680527 273.319473 796 272.48 796 L218.52 796 Z" android:strokeColor="#00000000" android:strokeWidth="1.0" android:fillType="nonZero" />
+        <path android:name="Line" android:fillColor="#ff5f5c5c" android:pathData="M 261.85,810.59 L 263.41,811.85 L 231.92,850.67 L 230.37,849.41 z" android:strokeColor="#00000000" android:strokeWidth="1.0" android:fillType="nonZero" />
+    </group>
+</vector>

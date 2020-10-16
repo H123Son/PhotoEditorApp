@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="24.0dip" android:width="24.0dip" android:viewportWidth="24.0" android:viewportHeight="24.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="text-shadow" android:translateX="4.0" android:translateY="3.0">
+        <path android:name="Shape" android:fillColor="#ffffffff" android:pathData="M 15.5,0 L 15.5,3.6 L 9.54,3.6 L 9.54,18 L 5.96,18 L 5.96,3.6 L 0,3.6 L 0,0 z" android:strokeColor="#00000000" android:strokeWidth="1.0" android:fillType="nonZero" />
+    </group>
+</vector>

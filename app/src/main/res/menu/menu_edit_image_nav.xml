@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_brightness"
+        android:icon="@drawable/ic_brighness_off"
+        android:title="Độ sáng"/>
+    <item
+        android:id="@+id/nav_constrast"
+        android:icon="@drawable/ic_constrast"
+        android:title="Độ tương phản"/>
+    <item
+        android:id="@+id/nav_saturation"
+        android:icon="@drawable/ic_saturation"
+        android:title="Bão hòa"/>
+
+</menu>

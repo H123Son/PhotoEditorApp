@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="24.0dip" android:width="24.0dip" android:viewportWidth="24.0" android:viewportHeight="24.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="frame" android:translateX="0.0" android:translateY="0.0">
+        <path android:name="Rectangle" android:fillColor="#00000000" android:pathData="M 18.2,4 Q 20,4 20,5.8 L 20,18.2 Q 20,20 18.2,20 L 5.8,20 Q 4,20 4,18.2 L 4,5.8 Q 4,4 5.8,4 z" android:strokeColor="#ffffffff" android:strokeWidth="2.0" android:fillType="evenOdd" />
+    </group>
+</vector>

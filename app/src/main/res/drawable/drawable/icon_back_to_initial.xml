@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="17.0dip" android:width="19.0dip" android:viewportWidth="21.0" android:viewportHeight="18.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="backup-restore-(1)" android:translateX="-2.0" android:translateY="-3.0">
+        <path android:name="Shape" android:fillColor="#ffffffff" android:pathData="M14 3 C9.02943725 3 5 7.02943725 5 12 L2 12 L6 16 L10 12 L7 12 C7 8.13400675 10.1340068 5 14 5 C17.8659932 5 21 8.13400675 21 12 C21 15.8659932 17.8659932 19 14 19 C12.5 19 11.09 18.5 9.94 17.7 L8.5 19.14 C10.04 20.3 11.94 21 14 21 C18.9705627 21 23 16.9705627 23 12 C23 7.02943725 18.9705627 3 14 3 Z M16 12 C16 10.8954305 15.1045695 10 14 10 C12.8954305 10 12 10.8954305 12 12 C12 13.1045695 12.8954305 14 14 14 C15.1045695 14 16 13.1045695 16 12 Z" android:strokeColor="#00000000" android:strokeWidth="1.0" android:fillType="nonZero" />
+    </group>
+</vector>

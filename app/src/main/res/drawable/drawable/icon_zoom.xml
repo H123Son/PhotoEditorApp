@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="24.0dip" android:width="24.0dip" android:viewportWidth="24.0" android:viewportHeight="24.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="Artboard" android:translateX="-138.0" android:translateY="-544.0">
+        <path android:name="Path" android:fillColor="#ffffffff" android:pathData="M 144.52,553.03 L 142,555.56 L 142,548 L 149.56,548 L 147.03,550.52 L 155.48,558.97 L 158,556.44 L 158,564 L 150.44,564 L 152.97,561.48 z" android:strokeColor="#00000000" android:strokeWidth="1.0" android:fillType="evenOdd" />
+    </group>
+</vector>

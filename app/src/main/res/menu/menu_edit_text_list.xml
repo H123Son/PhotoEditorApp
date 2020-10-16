@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_text_color"
+        android:icon="@drawable/ic_text_color_off"
+        android:title="Màu Chữ" />
+    <item
+        android:id="@+id/nav_text_stroke"
+        android:icon="@drawable/ic_stroke_off"
+        android:title="Màu Viền" />
+    <item
+        android:id="@+id/nav_text_opacity"
+        android:icon="@drawable/ic_opacity_off"
+        android:title="Độ Mờ" />
+</menu>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="24.0dip" android:width="25.0dip" android:viewportWidth="25.0" android:viewportHeight="24.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="curve" android:translateX="0.25" android:translateY="0.0">
+        <path android:name="Rectangle-5" android:fillColor="#00000000" android:pathData="M 19,3 Q 21,3 21,5 L 21,19 Q 21,21 19,21 L 5,21 Q 3,21 3,19 L 3,5 Q 3,3 5,3 z" android:strokeColor="#ffffffff" android:strokeWidth="2.0" android:fillType="evenOdd" />
+        <path android:name="Path-3" android:fillColor="#00000000" android:pathData="M4.14550781 19.75 C4.64567057 13.3203125 7.08618164 10.7759603 11.467041 12.1169434 C15.8479004 13.4579264 18.5964355 10.6784668 19.7126465 3.77856445" android:strokeColor="#ffffffff" android:strokeWidth="2.0" android:fillType="evenOdd" />
+    </group>
+</vector>

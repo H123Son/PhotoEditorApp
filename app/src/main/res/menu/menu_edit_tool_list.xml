@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_crop"
+        android:title="Trồng trọt"
+        android:icon="@drawable/icon_bottom_menu_crop"
+        />
+    <item android:id="@+id/nav_filter"
+        android:title="Lọc"
+        android:icon="@drawable/icon_bottom_menu_adjust"
+        />
+    <item android:id="@+id/nav_edit"
+        android:title="Điều chỉnh"
+        android:icon="@drawable/icon_bottom_menu_filter"
+        />
+    <item android:id="@+id/nav_text"
+        android:title="Lớp"
+        android:icon="@drawable/ic_add_text_on"
+        />
+
+</menu>

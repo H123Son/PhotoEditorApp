@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_text"
+        android:title="Văn bản"
+        android:icon="@drawable/icon_bottom_menu_text"
+        />
+    <item android:id="@+id/nav_sticker"
+        android:title="Nhãn dán"
+        android:icon="@drawable/ic_sticker_off"
+        />
+    <item android:id="@+id/nav_stroke_demo"
+        android:title="Viền"
+        android:icon="@drawable/ic_stroke_off"
+        />
+    <item android:id="@+id/nav_border_demo"
+        android:title="Khung"
+        android:icon="@drawable/ic_text_stroke"
+        />
+    <item android:id="@+id/nav_model"
+        android:title="Mẫu"
+        android:icon="@drawable/ic_model"
+        />
+
+</menu>

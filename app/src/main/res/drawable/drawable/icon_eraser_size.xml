@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="24.0dip" android:width="24.0dip" android:viewportWidth="24.0" android:viewportHeight="24.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="Group-6" android:translateX="0.0" android:translateY="0.0">
+        <path android:name="Oval" android:fillColor="#ffffffff" android:pathData="M12 16.6639676 C14.5758382 16.6639676 16.6639676 14.5758382 16.6639676 12 C16.6639676 9.42416181 14.5758382 7.33603239 12 7.33603239 C9.42416181 7.33603239 7.33603239 9.42416181 7.33603239 12 C7.33603239 14.5758382 9.42416181 16.6639676 12 16.6639676 Z" android:strokeColor="#00000000" android:strokeWidth="1.0" android:fillType="evenOdd" />
+        <path android:name="Oval" android:fillColor="#00000000" android:pathData="M 1.89,12 a 10.11,10.11 0 0 1 20.21,0 a 10.11,10.11 0 0 1 -20.21,0 z" android:strokeColor="#ffffffff" android:strokeWidth="1.375579" android:fillType="evenOdd" />
+    </group>
+</vector>

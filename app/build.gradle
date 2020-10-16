@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "30.0.0"
     defaultConfig {
-        applicationId "com.li.photoeditor"
+        applicationId "com.li.photoeditorapp"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
@@ -17,15 +17,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding{
+    dataBinding {
         enabled = true
     }
-    compileOptions{
+    compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
 
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -39,7 +40,6 @@ dependencies {
     //Filter Image Libary
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // ...
-
     implementation 'info.androidhive:imagefilters:1.0.7'
     // Crop Image libary
     implementation 'com.github.yalantis:ucrop:2.2.6-native'
@@ -50,5 +50,9 @@ dependencies {
     //glide libary
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-
+    implementation 'ja.burhanrashid52:photoeditor:1.0.0'
+    //outline text libary
+    implementation 'com.github.iamBedant:OutlineTextView:1.0.5'
+    //cirle imageview
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

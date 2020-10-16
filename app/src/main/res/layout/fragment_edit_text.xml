@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/background_app_color">
+
+
+        <EditText
+            android:id="@+id/edt_text_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/image_background_color"
+            android:textColor="@color/tabTextColor"
+            android:padding="@dimen/padding_text"
+            android:layout_margin="@dimen/margin__layout"
+            />
+        <RelativeLayout
+            android:id="@+id/rl_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/margin__layout"
+            android:background="@color/background_app_color"
+            >
+            <ImageView
+                android:id="@+id/img_keyboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_keyboard"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/margin__layout"
+                />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_edit_text"
+                android:layout_centerInParent="true"
+                android:textColor="@color/background_app_color"
+                />
+            <ImageView
+                android:id="@+id/img_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_check_24"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/margin__layout"
+                />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_font_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/marfin_vertical_layout"
+            android:visibility="gone"/>
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_size"
+            android:background="@color/image_background_color"
+            android:visibility="gone"/>
+        <FrameLayout
+            android:id="@+id/fr_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/marfin_vertical_layout"
+            android:visibility="gone">
+
+        </FrameLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_edit_text"
+            android:layout_width="@dimen/item_image_size"
+            android:layout_height="wrap_content"
+            android:background="@color/background_app_color"
+            app:itemIconTint="@color/nav_color"
+            app:labelVisibilityMode="unlabeled"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:menu="@menu/menu_edit_text_list"/>
+    </LinearLayout>
+</layout>

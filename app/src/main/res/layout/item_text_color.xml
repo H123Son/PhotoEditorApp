@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ln_text_color"
+    android:layout_width="@dimen/item_layout_color_size"
+    android:layout_height="@dimen/item_layout_color_size"
+    android:background="@color/background_app_color"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_marginHorizontal="@dimen/margin__layout">
+  <ImageView
+      android:id="@+id/img_text_color"
+      android:layout_width="@dimen/item_color_size"
+      android:layout_height="@dimen/item_color_size"
+      />
+
+
+</LinearLayout>
+    </layout>

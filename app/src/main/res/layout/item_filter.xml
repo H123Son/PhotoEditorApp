@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:id="@+id/ln_filter"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/shape_item_filter_off"
+    android:layout_marginHorizontal="@dimen/item_filer_margint_horizontal"
+    android:layout_marginVertical="@dimen/item_filter_margint_vertical"
+    >
+
+    <ImageView
+        android:id="@+id/img_filter_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/splash_icon" />
+
+    <TextView
+        android:id="@+id/tv_filter_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/text_margint_top_image"
+        android:gravity="center"
+        android:textColor="@color/tabTextColor"
+        android:text="kkkkk"
+        android:textSize="@dimen/text_in_filter_size"
+        android:textAllCaps="true"/>
+
+</LinearLayout>
+</layout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="ImageRecent"
+            type="com.li.photoeditorapp.model.ItemImageRecent" />
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_image_size"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin_item_recent_image">
+    
+    <ImageView
+        android:id="@+id/img_recent_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@color/background_app_color"
+        profileImage="@{ImageRecent.imagePath}"/>
+
+</LinearLayout>
+</layout>

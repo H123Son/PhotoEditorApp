@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="24.0dip" android:width="24.0dip" android:viewportWidth="24.0" android:viewportHeight="24.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="Group-17" android:translateX="2.0" android:translateY="3.0">
+        <path android:name="Rectangle-Copy" android:fillColor="#00000000" android:pathData="M 16.44,0.9 Q 18.24,0.9 18.24,2.7 L 18.24,15.1 Q 18.24,16.9 16.44,16.9 L 3.04,16.9 Q 1.24,16.9 1.24,15.1 L 1.24,2.7 Q 1.24,0.9 3.04,0.9 z" android:strokeColor="#ffffffff" android:strokeWidth="1.8" android:fillType="evenOdd" />
+        <path android:name="Line-2" android:fillColor="#00000000" android:pathData="M8.47297297 1.64285714 L2.31081081 7.35714286" android:strokeColor="#ffffffff" android:strokeWidth="1.5" android:strokeLineCap="square" android:fillType="evenOdd" />
+        <path android:name="Line-2-Copy" android:fillColor="#00000000" android:pathData="M14.1216216 1.5 L2.05405405 12.8714342" android:strokeColor="#ffffffff" android:strokeWidth="1.5" android:strokeLineCap="square" android:fillType="evenOdd" />
+        <path android:name="Line-2-Copy-2" android:fillColor="#00000000" android:pathData="M17.4594595 3.5 L3.76961043 16.7837151" android:strokeColor="#ffffffff" android:strokeWidth="1.5" android:strokeLineCap="square" android:fillType="evenOdd" />
+        <path android:name="Line-2-Copy-3" android:fillColor="#00000000" android:pathData="M17.4594595 8.75 L9.24324324 17" android:strokeColor="#ffffffff" android:strokeWidth="1.5" android:strokeLineCap="square" android:fillType="evenOdd" />
+    </group>
+</vector>

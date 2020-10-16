@@ -1,24 +1,24 @@
 <resources>
-    <string name="app_name">Photo Editor</string>
+    <string name="app_name">PhotoEditorApp</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="take_photo_text">Chụp Ảnh</string>
-    <string name="image_edited_text">Ảnh Đã Chỉnh Sửa</string>
-    <string name="edit_image">Chỉnh sửa ảnh</string>
-    <string name="brightness">Brightness</string>
-    <string name="contrast">Contrast</string>
-    <string name="saturation">Saturation</string>
-    <string name="app_title">Photo Editor</string>
-    <string name="get_media_image">Chọn Ảnh Có Sẵn</string>
-    <string name="crop">Crop</string>
-    <string name="filter_title">Hiệu Ứng</string>
-    <string name="changer_title">Điều Chỉnh</string>
+    <string name="title_edit_text">CĂN BẢN</string>
+    <string name="text_insert_image">Chưa có ảnh chỉnh sửa nào.</string>
+    <string name="button_add_image_title">BẮT ĐẦU CHỈNH SỬA</string>
+    <string name="text_permission">Để tạo các hình ảnh đẹp Lumii cần truy câp vào thư viện ảnh của bạn</string>
+    <string name="button_permission_title">CHO PHÉP LƯU CHỮ TRUY CẬP</string>
+    <string name="toolbar_title">Back</string>
     <string name="share_title">Chia sẻ</string>
-    <string name="set_as_screen">Cài làm hình nền</string>
-    <string name="gallery_title">Thư Viện</string>
-    <string name="camera_title">Máy Ảnh</string>
-    <string name="my_image_title">Ảnh Đã Chỉnh Sửa</string>
-    <string name="information_title">Thông Tin</string>
-    <string name="save_image_title">Save Image</string>
+    <string name="set_background_title">Đặt làm nền</string>
+    <string name="setting_title">Các thiết lập</string>
+    <string name="lumii_pro">Lumii Pro</string>
+    <string name="set_language">Chọn ngôn ngữ</string>
+    <string name="vietnam_title">Tiếng Việt</string>
+    <string name="title_share">Chia sẻ với bạn bè</string>
+    <string name="restore_title">Khôi phục mua hàng</string>
+    <string name="security_title">Chính sách bảo mật</string>
+    <string name="toolbar_edit_title">TẠO BỘ LỌC</string>
+    <string name="my_image_title">ĐÃ CHỈNH SỬA</string>
+    <string name="recent_image_title">GẦN ĐÂY</string>
 </resources>

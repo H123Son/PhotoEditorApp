@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/frmBorder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_frame_layout"
+        android:background="@drawable/rounded_border_tv">
+
+        <com.iambedant.text.OutlineTextView
+            android:id="@+id/tv_PhotoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_in_image_margin"
+            android:textSize="@dimen/text_in_image_size"
+            tools:text="Burhanuddin"
+            tools:textColor="@android:color/black"
+            android:textStyle="bold"
+            />
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/img_PhotoClose"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_gravity="top|start"
+        android:elevation="@dimen/elevation"
+        android:src="@drawable/ic_remove"
+        android:background="@drawable/shape_image"
+        />
+    <ImageView
+        android:id="@+id/img_scale"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_gravity="bottom|end"
+        android:elevation="@dimen/elevation"
+        android:src="@drawable/ic_scale"
+        android:background="@drawable/shape_image"/>
+
+</FrameLayout>
+</layout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="23.0dip" android:width="22.0dip" android:viewportWidth="22.0" android:viewportHeight="23.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="information-outline" android:translateX="0.0" android:translateY="0.0">
+        <path android:name="Shape" android:fillColor="#ffffffff" android:pathData="M10 9 L12 9 L12 7 L10 7 L10 9 Z M11 20 C6.59 20 3 16.41 3 12 C3 7.59 6.59 4 11 4 C15.41 4 19 7.59 19 12 C19 16.41 15.41 20 11 20 Z M11 2 C5.4771525 2 1 6.4771525 1 12 C1 14.6521649 2.0535684 17.195704 3.92893219 19.0710678 C5.80429597 20.9464316 8.3478351 22 11 22 C13.6521649 22 16.195704 20.9464316 18.0710678 19.0710678 C19.9464316 17.195704 21 14.6521649 21 12 C21 9.3478351 19.9464316 6.80429597 18.0710678 4.92893219 C16.195704 3.0535684 13.6521649 2 11 2 Z M10 17 L12 17 L12 11 L10 11 L10 17 Z" android:strokeColor="#00000000" android:strokeWidth="1.0" android:fillType="nonZero" />
+    </group>
+</vector>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/layout_height"
+    tools:context=".ui.edit_image.edit_text.ListEditToolFragment">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_edit_text_demo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/menu_edit_image_list"
+        app:itemIconTint="@color/nav_color"
+        app:itemTextColor="@color/nav_color"
+        android:background="@color/background_app_color"
+        app:labelVisibilityMode="labeled"/>
+
+
+</LinearLayout>
+</layout>
