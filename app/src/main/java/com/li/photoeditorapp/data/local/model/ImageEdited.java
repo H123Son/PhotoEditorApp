@@ -40,6 +40,7 @@ public class ImageEdited implements Serializable {
     public void setImageData(String imageData) {
         this.imageData = imageData;
     }
+
     @BindingAdapter("profileImage")
     public static void loadImage(ImageView view, String imageUrl) {
 

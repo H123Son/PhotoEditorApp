@@ -23,6 +23,7 @@ public class ItemImageRecent {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+
     @BindingAdapter("profileImage")
     public static void loadImage(ImageView view, String imageUrl) {
         Glide.with(view.getContext())

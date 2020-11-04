@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.iambedant.text.OutlineTextView;
@@ -47,6 +48,7 @@ import com.zomato.photofilters.imageprocessors.Filter;
 import com.zomato.photofilters.imageprocessors.subfilters.BrightnessSubFilter;
 import com.zomato.photofilters.imageprocessors.subfilters.ContrastSubFilter;
 import com.zomato.photofilters.imageprocessors.subfilters.SaturationSubfilter;
+
 import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
@@ -122,6 +124,7 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EditImageActivity.this, ChooseImageActivity.class);
+                ImageUtils.saveImageEdited(EditImageActivity.this, getFinalImageBitmap());
                 startActivity(intent);
             }
         });
@@ -149,21 +152,16 @@ public class EditImageActivity extends BaseActivity<ActivityEditImageBinding> im
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.tb_save:
-                ImageUtils.saveImage(this,getFinalImageBitmap());
+                ImageUtils.saveImage(this, getFinalImageBitmap());
         }
         return true;
 
     }
 
     @Override
-    public void onBackPressed() {
-        ImageUtils.saveImageEdited(this,getFinalImageBitmap());
-        super.onBackPressed();
-    }
-
-    @Override
     protected void onDestroy() {
-        ImageUtils.saveImageEdited(this,getFinalImageBitmap());
+        Toast.makeText(this,"lien",Toast.LENGTH_LONG).show();
+        ImageUtils.saveImageEdited(this, getFinalImageBitmap());
         super.onDestroy();
     }
 
